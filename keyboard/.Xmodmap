@@ -1,0 +1,18 @@
+! restore delete (messed with laptop keyboard)
+! keycode 119 = Delete NoSymbol Delete
+! keycode 91 = KP_Delete KP_Decimal KP_Delete KP_Decimal
+
+! change caps lock to Escape.
+remove Lock = Caps_Lock
+keysym Escape = Escape
+keysym Caps_Lock = Escape
+add Lock = Caps_Lock
+
+! On lenovo laptop, remap fn key to CNTL key
+! unfortunately, the BIOS automatically remaps any key pressed in combination
+! with the fn key to a different keycode. For example, fn+s => screenshot
+! which I have no control over. So even though fn can be remapped to cntrl,
+! as soon as I press any other key, the BIOS remaps it to some other keycode
+! This is why fn can be remapped to cntrl, yet when I press fn+F1, it generates
+! the keycode that is mapped to "Mute"
+keycode 151 = Control_L
