@@ -11,7 +11,10 @@ elif [ -f ~/bin/git-achievements/git-achievements ]; then
 fi
 
 alias mkvirtualenv="mkvirtualenv -p python3"
-alias cd..="cd .."
+alias cd.="cd .."
+alias cd..="cd ../.."
+alias cd...="cd ../../.."
+alias cd....="cd ../../../.."
 alias df="df -h"
 alias gits="git status"
 
