@@ -21,6 +21,9 @@ Plugin 'scrooloose/syntastic' "syntax checking plugin
 Plugin 'scrooloose/nerdcommenter' "toggle block commenting using \c-<space>
 "prevent tabular hell when clipboard pasting
 Plugin 'ConradIrwin/vim-bracketed-paste' "toggle paste mode when pasting
+" fuzzy search and edit files within current directory.
+" Useful for editting files within a complex-hierarchy project
+Plugin 'ctrlpvim/ctrlp.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -145,6 +148,24 @@ hi ColorColumn ctermbg=4
 ""always show the status line
 set laststatus=2
 
+"remap F1 to strip whitespaces
+nnoremap <silent> <F1> :call <SID>StripTrailingWhitespaces()<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""
+ """"""""""""functions mapped to keys"""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""
+"http://vimcasts.org/episodes/tidying-whitespace/
+function! <SID>StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""
   """""""""""filetype specific config""""""""""""
