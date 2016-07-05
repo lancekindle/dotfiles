@@ -1,0 +1,10 @@
+[user]
+	email = lance.kindle@gmail.com
+	name = Lance Kindle
+[credential]
+	helper = cache --timeout=86400
+[core]
+    editor = vim
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
