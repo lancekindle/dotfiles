@@ -24,6 +24,7 @@ Plugin 'ConradIrwin/vim-bracketed-paste' "toggle paste mode when pasting
 " fuzzy search and edit files within current directory.
 " Useful for editting files within a complex-hierarchy project
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tpope/vim-fugitive' " git commands
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
