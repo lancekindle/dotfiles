@@ -1,0 +1,44 @@
+background yes
+    use_xft yes
+    xftfont HandelGotD:size=8
+    xftalpha 0.5
+    update_interval 1000
+    total_run_times 0
+    own_window yes
+    own_window_type normal
+    own_window_transparent yes
+    own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+    double_buffer yes
+    minimum_size 170 5
+    maximum_width 190
+    draw_shades no
+    draw_outline no
+    draw_borders no
+    draw_graph_borders yes
+    default_color aaaaaa
+    default_shade_color red
+    default_outline_color green
+    alignment top_right
+    gap_x 5
+    gap_y 5
+    no_buffers yes
+    uppercase no
+    cpu_avg_samples 2
+    override_utf8_locale no
+
+TEXT
+KEYBINDINGS ${hr 2}
+    
+Alt+F2$alignr Run Dialog
+Alt+F3$alignr Alt Menu
+Super+space$alignr Main Menu
+Super+t$alignr Terminal
+Super+f$alignr File Manager
+Super+e$alignr Editor
+Super+m$alignr Media Player
+Super+w$alignr Web Browser
+Super+g$alignr Graphics Editor
+Super+l$alignr Lock Screen
+Super+v$alignr Volume Control
+Super+x$alignr Logout
+PrtSc$alignr Screenshot
