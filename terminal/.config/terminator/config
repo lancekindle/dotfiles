@@ -1,0 +1,23 @@
+[global_config]
+  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+[keybindings]
+[profiles]
+  [[default]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_image = None
+    background_darkness = 0.95
+    background_type = transparent
+    active_encodings = WINDOWS-1254, UTF-8, ISO-8859-1
+    font = Monospace 9
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = default
+      command = ~/bin/.git-cd2lastdir
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]
