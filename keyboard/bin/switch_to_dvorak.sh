@@ -5,8 +5,8 @@
 # You can see the rules.d script as a commented-out block at end of this file
 
 # scripts called by /etc/udev/rules.d/* MUST call an intermediate script that
-# backgrounds the actual task. This script recursively backgrounds itself in
-# order to avoid being shut down by a udev/rules.d watchdog
+# backgrounds the actual task. This script recursively backgrounds itself to
+# avoid being shut down by a udev/rules.d watchdog
 if [[ $# == 0 ]]
 then
     # re-run program in background using "at now"
@@ -22,16 +22,17 @@ DISPLAY=":0.0"
 export DISPLAY
 
 # MULTIPLE TIMES set keyboard to dvorak. (because it resets ~.2 seconds in)
+layout="-layout us -variant dvp -option caps:escape"
 i="10"
 while [ $i -gt 0 ]
 do
     let i-=1
     # find ID of usb keyboard
-    usbkbd_id=`xinput -list | grep "USB .*Keyboard" | awk -F'=' '{print $2}' | cut -c 1-2 | head -1`
+    keyboards=`xinput -list | grep "USB .*Keyboard"`
+    usbkbd_id=`echo $keyboards | awk -F'=' '{print $2}' | cut -c 1-2 | head -1`
     if [ "${usbkbd_id}" ]; then
         # set keyboard layout here. I also change capslock to escape
-        #gsettings set org.gnome.settings-daemon.plugins.keyboard active false
-        setxkbmap -device "${usbkbd_id}" -layout us -variant dvp -option caps:escape
+        setxkbmap -device "${usbkbd_id}" $layout
     fi
     sleep 0.3
 done
