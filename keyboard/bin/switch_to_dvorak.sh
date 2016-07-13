@@ -14,7 +14,7 @@ then
     # argument "x" is passed, which skips this section in the next run
     echo $0 "x" | at now
     # exit so that this process does not continue running
-    exit
+    exit 0
 fi
 
 # exporting of display somehow makes this work.
@@ -23,7 +23,7 @@ export DISPLAY
 
 # MULTIPLE TIMES set keyboard to dvorak. (because it resets ~.2 seconds in)
 layout="-layout us -variant dvp -option caps:escape"
-i="10"
+i="2"
 while [ $i -gt 0 ]
 do
     let i-=1
@@ -36,6 +36,7 @@ do
     fi
     sleep 0.3
 done
+exit 0
 
 
 # you can see your current layout by running
