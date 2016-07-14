@@ -1,0 +1,7 @@
+#the following should be added after the ! variant section
+  dvq-simplified  us: English (Dvorak-Qwerty, simplified)
+  dvorak-qwerty   us: English (Dvorak Qwerty)
+  dvq-intl        us: English (Dvorak-Qwerty, international with dead keys)
+  dvq-alt-intl    us: English (Dvorak-Qwerty alternative international no dead keys)
+  dvq-classic     us: English (Dvorak-Qwerty, classic)
+  dvqp            us: English (Dvorak-Qwerty, programmer)

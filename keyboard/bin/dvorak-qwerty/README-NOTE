@@ -1,0 +1,7 @@
+this directory holds configuration files for xkb under /usr/share/X11/xkb/
+The files inside this directory will be simlinked there once the install.sh
+script has been run. In particular, this installs the necessary files to get
+dvorak-qwerty working, whereby the keyboard can be configured as dvorak, but
+with Cntrl+, Super+, or Alt+ keys remapped to qwerty layout.
+NOTE THAT CHROME (the browser) DOES NOT RESPECT THESE KEY REBINDINGS AND RESETS
+LAYOUT

@@ -1,0 +1,44 @@
+<!--    <variant>
+          <configItem>
+            <name>dvp</name>
+            <description>English (programmer Dvorak)</description>
+          </configItem>
+        </variant>
+        # add below stuff after above xml content
+-->
+        <variant>
+          <configItem>
+            <name>dvq-simplified</name>
+            <description>English (Dvorak-Qwerty, simplified)</description>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>dvorak-qwerty</name>
+            <description>English (Dvorak Qwerty)</description>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>dvq-intl</name>
+            <description>English (Dvorak-Qwerty, international with dead keys)</description>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>dvq-alt-intl</name>
+            <description>English (Dvorak-Qwerty alternative international no dead keys)</description>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>dvq-classic</name>
+            <description>English (Dvorak-Qwerty, classic)</description>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>dvqp</name>
+            <description>English (Dvorak-Qwerty, programmer)</description>
+          </configItem>
+        </variant>
