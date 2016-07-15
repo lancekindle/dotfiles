@@ -1,7 +1,9 @@
+# the following will be under section titled "! layout"
+  usdvq             English(Dvorak-Qwerty)
 # the following will be under section titled "! variant"
-  dvq-simplified  us: English (Dvorak-Qwerty, simplified)
-  dvorak-qwerty   us: English (Dvorak Qwerty)
-  dvq-intl        us: English (Dvorak-Qwerty, international with dead keys)
-  dvq-alt-intl    us: English (Dvorak-Qwerty alternative international no dead keys)
-  dvq-classic     us: English (Dvorak-Qwerty, classic)
-  dvqp            us: English (Dvorak-Qwerty, programmer)
+  dvq-simplified  usdvq: English (Dvorak-Qwerty, simplified)
+  dvorak-qwerty   usdvq: English (Dvorak Qwerty)
+  dvq-intl        usdvq: English (Dvorak-Qwerty, international with dead keys)
+  dvq-alt-intl    usdvq: English (Dvorak-Qwerty alternative international no dead keys)
+  dvq-classic     usdvq: English (Dvorak-Qwerty, classic)
+  dvqp            usdvq: English (Dvorak-Qwerty, programmer)

@@ -1,11 +1,28 @@
-<!--    <variant>
-          <configItem>
-            <name>dvp</name>
-            <description>English (programmer Dvorak)</description>
-          </configItem>
-        </variant>
-        # add below stuff after above xml content
+<!--    <layoutList>
+          <layout>
+            <configItem>
+              <name>us</name>
+              ....
+            </configItem>
+            <variantList>
+            ...
+            </variantList>
+          </layout>
+          ...
+        </layoutList>
+# add below stuff as children to <layoutList>
 -->
+    <layout>
+      <configItem>
+        <name>usdvq</name>
+
+        <shortDescription>en</shortDescription>
+        <description>English (US - Dvorak-Qwerty)</description>
+        <languageList>
+          <iso639Id>eng</iso639Id>
+        </languageList>
+      </configItem>
+      <variantList>
         <variant>
           <configItem>
             <name>dvq-simplified</name>
@@ -42,3 +59,6 @@
             <description>English (Dvorak-Qwerty, programmer)</description>
           </configItem>
         </variant>
+      </variantList>
+    </layout>
+

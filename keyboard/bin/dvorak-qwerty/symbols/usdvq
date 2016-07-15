@@ -38,7 +38,7 @@
 // If you modify this file, the changes will not be available until you remove
 // xkb's compiled keymaps and then restart.
 // sudo rm /var/lib/xkb/*.xkm
-// sudo reboot
+// reboot
 
 
 partial alphanumeric_keys
