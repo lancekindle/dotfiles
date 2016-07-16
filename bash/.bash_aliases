@@ -21,3 +21,6 @@ alias gits="git status"
 alias vimdocs="cd /usr/share/vim/vim*/doc;vim help.txt" 
 alias vimdoc=vimdocs
 alias xflux="xflux -z 99353"
+
+# force tmux (as best as possible) to use 256 colors
+alias tmux="tmux -2"

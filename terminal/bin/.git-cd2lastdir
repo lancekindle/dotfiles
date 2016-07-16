@@ -1,0 +1,12 @@
+# /usr/env/bash
+# change to directory in which git was last run if starting directory is $HOME
+# manually starting terminal anywhere else is allowed
+
+# echo $@ > ~/args  # was used for debugging
+
+if [ "$PWD" == "$HOME" ]; then
+	GIT_LAST_USED_DIR=$(cat ~/bin/.git-last-used-dir)
+	cd "$GIT_LAST_USED_DIR"  # encase directory in quotes in case spaces in path
+fi
+# AND (don't miss it here)... manually start tmux
+tmux -2

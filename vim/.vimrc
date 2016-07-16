@@ -25,6 +25,7 @@ Plugin 'ConradIrwin/vim-bracketed-paste' "toggle paste mode when pasting
 " Useful for editting files within a complex-hierarchy project
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-fugitive' " git commands
+Plugin 'sickill/vim-monokai' " colorscheme
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -78,6 +79,7 @@ let g:syntastic_mode_map = {
 
 " " ================= END PLUGIN CONFIG ===================================
 
+
 " set smart-indenting (like matching previous line indentation level)
 set autoindent
 set smartindent
@@ -122,7 +124,9 @@ vmap <silent> <PageDown> <C-D><C-D>
 vmap <silent> <PageUp> <C-U><C-U>
 
 ""enable colors
-syntax on
+syntax enable
+"use monokai colorscheme
+colorscheme monokai
 
 "allow backspacing over more than current line
 set backspace=indent,eol,start
@@ -136,7 +140,7 @@ set nowritebackup
 "C-H event from C-BS (like xterm). Terminator DOES NOT WORK with this
 inoremap <C-H> <C-w>
 
-""set terminal colors
+""override terminal colors to 256
 set t_Co=256
 
 "cursor line and column position
@@ -144,7 +148,7 @@ set ruler
 
 "vertical bar on column 80
 set colorcolumn=80
-hi ColorColumn ctermbg=4
+hi ColorColumn ctermbg=240
 
 ""always show the status line
 set laststatus=2

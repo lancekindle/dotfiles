@@ -142,3 +142,10 @@ export PS1="\${debian_chroot:+(\$debian_chroot)}\u@\h:\w\[$txtcyn\]\$git_branch\
 export QSYS_ROOTDIR="/home/lancey/bin/altera_lite/15.1/quartus/sopc_builder/bin"
 
 export ALTERAOCLSDKROOT="/home/lancey/bin/altera_lite/15.1/hld"
+
+# =============== [ Custom Functions ] ==========================
+# print out all colors on terminal for easy reference
+function all_colors {
+    for C in {0..255}; do  tput setab $C;  echo -n "$C "; done
+    echo
+}
