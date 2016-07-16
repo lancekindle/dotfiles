@@ -217,7 +217,7 @@ function SetPythonOptions()
     imap <F5> <Esc>:w<CR>:SyntasticCheck<CR>:silent !tmux split-window -h 'python3 -i "%:p"'<CR>
     nmap <F6> :silent !tmux split-window -h 'python3 -m pdb "%:p"'<CR>
     " interestingly, I can't use /usr/bin/env which would allow the script to
-    " optionally specify python version. But env doesn't allow arguments to 
+    " optionally specify python version. But env doesn't allow arguments to
     " pass, which means I cannot run interactive python. so it stays as python3
 endfunction
 
@@ -230,4 +230,12 @@ function SetRustOptions()
     imap <F5> <Esc>:w<CR>:silent !tmux split-window -h 'cargo run --release; read -p "press [enter] to close"'<CR>
     "nmap is keybinding in normal mode, imap is bindings in insert mode
     "<Esc> exits insert mode
+endfunction
+
+autocmd FileType sh silent call SetShellScriptOptions()
+function SetShellScriptOptions()
+    " run shell script (.sh) by pressing F5. Run it as sudo pressing F2
+    nmap <F5> :silent !tmux split-window -h '"%:p"; read -p "[enter] to close. F2 to run as sudo"'
+    " run shell script (.sh) as sudo by pressing F2
+    nmap <F2> :silent !tmux split-window -h 'sudo "%:p"; read -p "[enter] to close"'
 endfunction
