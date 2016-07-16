@@ -235,7 +235,7 @@ endfunction
 autocmd FileType sh silent call SetShellScriptOptions()
 function SetShellScriptOptions()
     " run shell script (.sh) by pressing F5. Run it as sudo pressing F2
-    nmap <F5> :silent !tmux split-window -h '"%:p"; read -p "[enter] to close. F2 to run as sudo"'
+    nmap <F5> :silent !tmux split-window -h '"%:p"; read -p "[enter] to close. F2 to run as sudo"'<CR>
     " run shell script (.sh) as sudo by pressing F2
-    nmap <F2> :silent !tmux split-window -h 'sudo "%:p"; read -p "[enter] to close"'
+    nmap <F2> :silent !tmux split-window -h 'sudo "%:p"; read -p "[enter] to close"'<CR>
 endfunction
