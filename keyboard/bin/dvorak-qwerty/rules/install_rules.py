@@ -1,4 +1,6 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
+# MUST BE PYTHON3! Python2 cannot handle non-ascii characters in the xml
+# files
 
 # this script installs the usdvq layouts to the base.xml and evdev.xml
 # files in /usr/share/X11/xkb/rules
@@ -24,6 +26,12 @@ system_evdev_xml = rules_dir + 'evdev.xml'
 
 from xml.dom import minidom
 import warnings
+import sys
+import os
+
+# change to rules directory
+script_location = os.path.dirname(os.path.abspath(__file__))
+os.chdir(script_location)
 
 insert_file = 'base.xml'
 edit_file = system_base_xml
@@ -72,7 +80,7 @@ for filename in [rules_dir + 'base.lst', rules_dir + 'evdev.lst']:
     # verify Dvorak-Qwerty not already installed
     if 'Dvorak-Qwerty' in lines:
         warnings.warn(
-            'file ' + filename + ' has "Dvorak-Qwerty" already installed'
+            '\n' + filename + ' already has "Dvorak-Qwerty" installed.\n'
         )
         continue
 
@@ -90,3 +98,4 @@ for filename in [rules_dir + 'base.lst', rules_dir + 'evdev.lst']:
     with open(filename, 'w') as f:
         f.write(lines)
 
+sys.exit(0)  # notify calling script of success

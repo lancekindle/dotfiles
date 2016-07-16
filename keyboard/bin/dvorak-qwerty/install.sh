@@ -1,4 +1,4 @@
-#/bin/bash
+#! /bin/bash
 
 NAME=xkb-backup.tar.gz
 CONF=/usr/share/X11/xkb
@@ -12,13 +12,28 @@ then
    exit 1
 fi
 
+if [ -f $CONF/symbols/usdvq ]; then
+    echo "Dvorak-Qwerty already installed"
+    exit 1
+fi
+
+# install new layout variants in rules section, so that it can be loaded
+# with setxkbmap. This is handled by ./rules/install_rules.py
+./rules/install_rules.py
+# exit if python script had problems
+if [ $? -eq 1 ]; then
+    echo $?
+    echo "Python script had errors. Aborting."
+    echo "P.S. If it's unicode stuff, verify you are running python3!"
+    exit 1
+fi
 
 echo "Backing up current configuration in $CONF/$NAME"
 tar zcf $CONF/../$NAME $CONF --absolute-names
 # tar would fail if it tried to zip up directory in which it also created a zip
 mv $CONF/../$NAME $CONF/$NAME
 DIRECTORY_OWNER=$(namei -o $PWD | tail -n 1 | awk '{if ($2) print $2}')
-chown $DIRECTORY_OWNER -R $NAME
+chown $DIRECTORY_OWNER -R $CONF/$NAME
 
 echo "Copying Dvorak-Qwerty to types"
 # install many dvorak-qwerty variants in the "us" symbols
@@ -61,7 +76,4 @@ if [[ ! `cat $CONF/types/complete | grep "dvorak-qwerty"` ]]; then
     sed -i '/};/i \ \ \ \ include "dvorak-qwerty"' $CONF/types/complete
 fi
 
-# install new layout variants in rules section, so that it can be loaded
-# with setxkbmap. This is handled by ./rules/install_rules.py
-./rules/install_rules.py
 exit 0
