@@ -7,13 +7,13 @@ source! /home/lancey/.vimperatorrc.local
 
 
 "===[ Key Mappings  ]===================================================
-" L and H handle forward / backward page navigation
-noremap L gt
-noremap H gT
+" L and H switch tabs
+noremap L :tabnext<CR>
+noremap H :tabprevious<CR>
 
-" Cntrl -l / h switch tabs
-noremap <C-l> :tabnext<CR>
-noremap <C-h> :tabprevious<CR>
+" Cntrl -l / h handle forward / backward navigation
+noremap <C-l> gt
+noremap <C-h> gT
 
 " b searches bookmarks
 noremap b :bmarks
@@ -25,6 +25,20 @@ noremap dd :tabclose<CR>
 
 "===[ Settings (Look and Feel) ]========================================
 set scroll=20
+
+"Link Hints look like vimium
+"Style of hints looks like vimium
+highlight Hint font-family: monospace; font-size: 13px; background: linear-gradient(to bottom, #FFF785, #FFC543); box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.3); color: #302505; font-weight: bold; padding: 0px 4px 0px 4px; text-transform: uppercase; z-index: 99999 !important;
+"links use characters instead of numbers (I've probably disabled this one)
+"set hintchars=hjklasdfgyuiopqwertnmzxcvb
+
+" remove all other GUI elements aside from tab display
+set gui=none
+set gui=tabs
+
+" Try to stay in normal mode after loading a web page
+" Aka attempt to re-grab focus from webpage elements
+set focuscontent
 
 
 "===[ Commands ]========================================================
@@ -48,4 +62,39 @@ javascript <<EOF
         inputElement.addEventListener('focus', swapBGColor, false);
         inputElement.addEventListener('blur', swapBGColor, false);
     })();
+EOF
+
+" Hide status bar when fullscreen mode is detected (like during youtube videos)
+" Taken from here https://github.com/vimperator/vimperator-labs/issues/26#issuecomment-73982996"
+autocmd Fullscreen .* js updateBottomBar()
+
+" Re-enable bottom bar during certain commands.
+noremap : :js updateBottomBar(false)<CR>:
+noremap o :js updateBottomBar(false)<CR>o
+noremap O :js updateBottomBar(false)<CR>O
+noremap t :js updateBottomBar(false)<CR>t
+noremap T :js updateBottomBar(false)<CR>t
+noremap / :js updateBottomBar(false)<CR>/
+cnoremap <CR> <CR>:js updateBottomBar()<CR>
+cnoremap <Esc> <Esc>:js updateBottomBar()<CR>
+
+:js << EOF
+let hlContentSepValue = highlight.get('ContentSeparator').value
+
+function updateBottomBar(close = window.fullScreen) {
+  let bb = document.getElementById('liberator-bottombar')
+  if (! bb) return
+
+  if (close) {
+    bb.style.height = '0px'
+    bb.style.overflow = 'hidden'
+    liberator.execute('highlight ContentSeparator display: none;')
+  }
+  else {
+    bb.style.height = ''
+    bb.style.overflow = ''
+    liberator.execute('highlight ContentSeparator ' + hlContentSepValue)
+  }
+}
+updateBottomBar()
 EOF
