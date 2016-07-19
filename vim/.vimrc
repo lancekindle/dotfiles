@@ -156,6 +156,27 @@ set laststatus=2
 "remap F1 to strip whitespaces
 nnoremap <silent> <F1> :call <SID>StripTrailingWhitespaces()<CR>
 
+" Dvorak-Qwerty mixing. When in insert mode (or writing commands) use dvorak.
+" when in normal mode (including keyboad shortcuts) use qwerty layout.  This
+" makes it so that common keys like dd and hjkl behave as expected according
+" to qwerty-based muscle memory, but I can still type with dvorak. This script
+" only runs when $DVQP_KEYBOARD_ENABLED is set.
+" HOW THIS WORKS: each "let &langmap" maps a row of a dvorak keys to a row of
+" of qwerty keys (using the ';' as a divider between the two groups. This
+" mapping is only used when in normal mode. Otherwise, command mode and insert
+" mode use the existing keyboard layout (dvorak)
+if $DVQP_KEYBOARD_ENABLED == 1
+    let &langmap='$&[{}(=*)+]!#;`1234567890-='
+    let &langmap='\;\,.pyfgcrl/@\\;qwertyuiop[]\\'
+    let &langmap="aoeuidhtns-;asdfghjkl\\;'"
+    let &langmap="'qjkxbmwvz;zxcvbnm\\,./"
+    let &langmap='~%7531902468`;~!@#$%^&*()_+'
+    let &langmap=':<>PYFGCRL?^|;QWERTYUIOP{}|'
+    let &langmap='AOEUIDHTNS_;ASDFGHJKL:\"'
+    let &langmap='\"QJKXBMWVZ;ZXCVBNM<>?'
+    echo "enabling dvorak keyboard"
+endif
+
 """"""""""""""""""""""""""""""""""""""""""""""
  """"""""""""functions mapped to keys"""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""

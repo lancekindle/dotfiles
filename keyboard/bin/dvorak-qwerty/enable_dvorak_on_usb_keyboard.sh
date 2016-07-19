@@ -19,11 +19,12 @@ fi
 
 # exporting of display somehow makes this work.
 DISPLAY=":0.0"
-export DISPLAY
+DVQP_KEYBOARD_ENABLED=1
+export DISPLAY DVQP_KEYBOARD_ENABLED
 
 # MULTIPLE TIMES set keyboard to dvorak. (because it resets ~.2 seconds in)
-layout="-layout us -variant dvp -option caps:escape"
-i="2"
+layout="-layout pc+us+usdvq -variant dvqp -option caps:escape"
+i="5"
 while [ $i -gt 0 ]
 do
     let i-=1
@@ -71,6 +72,6 @@ SUBSYSTEM=="usb", \
 ATTRS{idVendor}=="0510", \
 ATTRS{idProduct}=="0032", \
 # switch out of root access into <user>, such as lancey
-RUN+="/usr/bin/sudo -u lancey /home/lancey/bin/switch_to_dvorak.sh", \
+RUN+="/usr/bin/sudo -u lancey /home/lancey/bin/dvorak-qwerty/enable_dvorak_on_usb_keyboard.sh", \
 # to be extra sure, enable ALL users to access device
 MODE="0666"
