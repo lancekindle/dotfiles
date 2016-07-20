@@ -166,14 +166,7 @@ nnoremap <silent> <F1> :call <SID>StripTrailingWhitespaces()<CR>
 " mapping is only used when in normal mode. Otherwise, command mode and insert
 " mode use the existing keyboard layout (dvorak)
 if $DVQP_KEYBOARD_ENABLED == 1
-    let &langmap='$&[{}(=*)+]!#;`1234567890-='
-    let &langmap='\;\,.pyfgcrl/@\\;qwertyuiop[]\\'
-    let &langmap="aoeuidhtns-;asdfghjkl\\;'"
-    let &langmap="'qjkxbmwvz;zxcvbnm\\,./"
-    let &langmap='~%7531902468`;~!@#$%^&*()_+'
-    let &langmap=':<>PYFGCRL?^|;QWERTYUIOP{}|'
-    let &langmap='AOEUIDHTNS_;ASDFGHJKL:\"'
-    let &langmap='\"QJKXBMWVZ;ZXCVBNM<>?'
+    source ~/.vim/dvorak_qwerty_noremaps.vim
     echo "enabling dvorak keyboard"
 endif
 
