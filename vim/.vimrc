@@ -153,8 +153,12 @@ hi ColorColumn ctermbg=240
 ""always show the status line
 set laststatus=2
 
-"remap F1 to strip whitespaces
-nnoremap <silent> <F1> :call <SID>StripTrailingWhitespaces()<CR>
+" show trailing whitespace
+set list
+set listchars=trail:.,extends:#,nbsp:.
+
+"remap F12 to strip whitespaces
+nnoremap <silent> <F12> :call <SID>StripTrailingWhitespaces()<CR>
 
 " Dvorak-Qwerty mixing. When in insert mode (or writing commands) use dvorak.
 " when in normal mode (including keyboad shortcuts) use qwerty layout.  This
@@ -166,7 +170,7 @@ nnoremap <silent> <F1> :call <SID>StripTrailingWhitespaces()<CR>
 " mapping is only used when in normal mode. Otherwise, command mode and insert
 " mode use the existing keyboard layout (dvorak)
 if $DVQP_KEYBOARD_ENABLED == 1
-    source ~/.vim/dvorak_qwerty_noremaps.vim
+    "source ~/.vim/dvorak_qwerty_noremaps.vim
     echo "enabling dvorak keyboard"
 endif
 
