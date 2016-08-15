@@ -1,7 +1,0 @@
-# /usr/env/bash
-
-# log directory in which git was run
-pwd > ~/bin/.git-last-used-dir
-
-# run git-achievements with all options passed
-~/bin/git-achievements/git-achievements "$@"

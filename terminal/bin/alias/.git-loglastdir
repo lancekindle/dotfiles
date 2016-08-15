@@ -4,4 +4,4 @@
 pwd > ~/bin/.git-last-used-dir
 
 # run git-achievements with all options passed
-~/bin/git-achievements/git-achievements "$@"
+~/bin/alias/git-achievements/git-achievements "$@"

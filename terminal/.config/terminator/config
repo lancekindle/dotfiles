@@ -23,7 +23,7 @@
       type = Terminal
       parent = window0
       profile = default
-      command = ~/bin/.git-cd2lastdir
+      command = ~/bin/alias/.git-cd2lastdir
     [[[window0]]]
       type = Window
       parent = ""
