@@ -90,32 +90,40 @@ if not len(dvorak_keyboard) == len(qwerty_keyboard):
                       right down to the number of newlines')
 
 if langmap_fixed:
+    # only langmap needs escaped characters
     dvorak_keyboard = escape_all_special_chars(dvorak_keyboard)
     qwerty_keyboard = escape_all_special_chars(qwerty_keyboard)
 dvorak_keyboard = [row for row in dvorak_keyboard.split('\n') if row]
 qwerty_keyboard = [row for row in qwerty_keyboard.split('\n') if row]
 
-# generate code that remaps normal mode keys from dvorak to qwerty
-f = open('dvorak_qwerty_noremaps.vim', 'w')
-# due to remappings... we MUST Q to <nop>. Otherwise Q (accidentally
-# hitting Q when thinking of hitting : in dvorak) will enter Ex-mode. A
-# weird compatibility mode that requires you to type "visual" to escape.
-# http://www.bestofvim.com/tip/leave-ex-mode-good/
-f.write('nnoremap Q <nop>\n')
 if not langmap_fixed:
+    f = open('dvorak_qwerty_noremaps.vim', 'w')
+    # due to remappings... we MUST Q to <nop>. Otherwise Q (accidentally
+    # hitting Q when thinking of hitting : in dvorak) will enter
+    # Ex-mode. A weird compatibility mode that requires you to type
+    # "visual" to escape.
+    # http://www.bestofvim.com/tip/leave-ex-mode-good/
+    f.write('nnoremap Q <nop>\n')
     for dv_row, qw_row in zip(dvorak_keyboard, qwerty_keyboard):
         for dv_key, qw_key in zip(dv_row, qw_row):
-            dv_key = escape_special_char(dv_key)
-            qw_key = escape_special_char(qw_key)
             if not dv_key == qw_key:
                 if not qw_key == 'Q':
                     # we avoid binding anything to Q, the Ex-Mode
-                    f.write('nnoremap ' + dv_key + ' ' + qw_key + '\n')
+                    # bind all available maps so that dvorak behaves like
+                    # qwerty. Only exception is 'q' (recording) requires
+                    # a storage register which maps to dvorak. And ZZ
+                    # does not work...
+                    f.write('noremap ' + dv_key + ' ' + qw_key + '\n')
+                    f.write('noremap! ' + dv_key + ' ' + qw_key + '\n')
+                    f.write('lnoremap ' + dv_key + ' ' + qw_key + '\n')
+                    f.write('iunmap ' + dv_key + '\n')
                 # Operator mode: keys expected after command keys. Makes
                 # 'dd' behave as expected. Second 'd' is from operator
                 # mode
-                f.write('onoremap ' + dv_key + ' ' + qw_key + '\n')
-f.close()
+                # remap dvorak to dvorak (same key) during insert mode
+                #f.write('iunmap ' + dv_key + '\n')
+                #f.write('onoremap ' + dv_key + ' ' + qw_key + '\n')
+    f.close()
 
 
 if langmap_fixed:
