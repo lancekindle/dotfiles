@@ -16,9 +16,12 @@ alias cd...="cd ../.."
 alias cd....="cd ../../.."
 alias df="df -h"
 alias gits="git status"
+alias ll='ls -alFh'
+alias la='ls -Ah'
+alias l='ls -CFh'
 
 # for opening vim docs
-alias vimdocs="cd /usr/share/vim/vim*/doc;vim help.txt" 
+alias vimdocs="cd /usr/share/vim/vim*/doc;vim help.txt"
 alias vimdoc=vimdocs
 alias xflux="xflux -z 99353"
 
