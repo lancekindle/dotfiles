@@ -5,40 +5,43 @@ source! /home/lancey/.vimperatorrc.local
 " many of these commands are taken from
 " https://gist.github.com/igal/329662
 
+"===[ Hints ]===========================================================
+" (y)ank / copy current url
+
 
 "===[ Key Mappings  ]===================================================
-" L and H switch tabs
-noremap L :tabnext<CR>
-noremap H :tabprevious<CR>
+" L and H handle forward / backward navigation
+noremap L :forward<CR>
+noremap H :back<CR>
 
-" Cntrl -l / h handle forward / backward navigation
-noremap <C-l> gt
-noremap <C-h> gT
+" Cntrl -l / h switch tabs. (this is unchangeable behavior in firefox...?)
+noremap <C-l> :tabnext<CR>
+noremap <C-h> :tabprevious<CR>
 
 " b searches bookmarks
 noremap b :bmarks
 
 " dd deletes current tab rather than just d
-noremap d z0  "remap d to unused key z0
+noremap d <Nop>  "remap d to nothing
 noremap dd :tabclose<CR>
+
+" increase scroll-speed by 2
+noremap j 2j
+noremap k 2k
 
 
 "===[ Settings (Look and Feel) ]========================================
 set scroll=20
 
-"Link Hints look like vimium
-"Style of hints looks like vimium
+"mimic vimium Link Hints
+"Hints use characters instead of numbers
+set hintchars=hjklasdfgyuiopqwertnmzxcvb
+"approximate vimium Hint Style
 highlight Hint font-family: monospace; font-size: 13px; background: linear-gradient(to bottom, #FFF785, #FFC543); box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.3); color: #302505; font-weight: bold; padding: 0px 4px 0px 4px; text-transform: uppercase; z-index: 99999 !important;
-"links use characters instead of numbers (I've probably disabled this one)
-"set hintchars=hjklasdfgyuiopqwertnmzxcvb
 
 " remove all other GUI elements aside from tab display
 set gui=none
 set gui=tabs
-
-" Try to stay in normal mode after loading a web page
-" Aka attempt to re-grab focus from webpage elements
-set focuscontent
 
 
 "===[ Commands ]========================================================
