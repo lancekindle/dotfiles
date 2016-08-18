@@ -117,9 +117,6 @@ if [ -f ~/.local/bin/virtualenvwrapper.sh ]; then
     . ~/.local/bin/virtualenvwrapper.sh
 fi
 
-# added by Anaconda3 2.4.0 installer
-export PATH="$HOME/bin/anaconda3/bin:$PATH"
-
 # add go-lang to path
 export GOROOT=$HOME/bin/go
 export PATH=$PATH:$GOROOT/bin
