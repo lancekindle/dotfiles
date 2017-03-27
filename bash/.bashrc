@@ -112,7 +112,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#set up for virtual environments
+#set up for virtual environments. Install it using pip3 virtualenvwrapper
 if [ -f ~/.local/bin/virtualenvwrapper.sh ]; then
     . ~/.local/bin/virtualenvwrapper.sh
 fi
@@ -120,8 +120,11 @@ fi
 # add go-lang to path
 export GOROOT=$HOME/bin/go
 export PATH=$PATH:$GOROOT/bin
+export GOPATH=$HOME/code/go
+export PATH=$PATH:$GOPATH/bin
 
 # add everything in bin to path. Allows executing freeplane/ many others
+export PATH="$PATH:$HOME/bin/bin"
 
 # add quartus fpga tools to path
 export PATH="$PATH:$HOME/bin/altera/13.0sp1/quartus/bin"
