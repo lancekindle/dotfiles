@@ -19,11 +19,15 @@ alias gits="git status"
 alias ll='ls -alFh'
 alias la='ls -Ah'
 alias l='ls -CFh'
+alias tig="tig --all"
 
 # for opening vim docs
 alias vimdocs="cd /usr/share/vim/vim*/doc;vim help.txt"
 alias vimdoc=vimdocs
 alias xflux="xflux -z 99353"
+
+# use neovim instead of vim
+alias vim="nvim"
 
 # force tmux (as best as possible) to use 256 colors
 alias tmux="tmux -2"
