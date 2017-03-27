@@ -65,7 +65,16 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 " turn off confirmation of ycm_extra_conf
 let g:ycm_confirm_extra_conf = 0
 
-"let YouCompleteMe use the system installation of python2
+" blacklist certain filetype from being auto-completed
+let g:ycm_filetype_blacklist = {
+      \ 'asm' : 1,
+      \}
+let g:syntastic_mode_map = { 'passive_filetypes': ['asm', 'inc'] }
+let g:syntastic_disabled_filetypes=['asm', 'inc']
+let g:syntastic_asm_checkers=['']  "I think this last one did it
+let g:syntastic_inc_checkers=['']
+
+" YouCompleteMe use the system installation of python2
 let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 
 ""use python3 for syntax checking
@@ -212,7 +221,12 @@ function SetTabOrSpaces()
         setlocal noexpandtab
         " reset tab widths for consistency
         setlocal tabstop=4 softtabstop=4 shiftwidth=4
-        echo "WARNING! File uses tabs instead of spaces. Defaulting to tabs"
+        "echo "WARNING! File uses tabs instead of spaces. Defaulting to tabs"
+        " asm options may want to change tabstops (this function gets called
+        " AFTER asm, so we must call it again to set options)
+        if (&ft == "asm" || &ft == "inc")
+            silent call SetAsmOptions()
+        endif
     endif
 endfunction
 
@@ -256,4 +270,23 @@ function SetShellScriptOptions()
     nmap <F5> :silent !tmux split-window -h '"%:p"; read -p "[enter] to close. F2 to run as sudo"'<CR>
     " run shell script (.sh) as sudo by pressing F2
     nmap <F2> :silent !tmux split-window -h 'sudo "%:p"; read -p "[enter] to close"'<CR>
+endfunction
+autocmd FileType c silent call SetCOptions()
+function SetCOptions()
+    " run go script (.go) by pressing F5.
+    nmap <F5> :silent !tmux split-window -h 'gcc "%:p"; ./a.out; read -p "[enter] to close."'<CR>
+    nmap <F6> :silent !tmux split-window -h '~/bin/gbdk/bin/lcc -o a.gb "%:p"; ~/bin/gb_emulate.sh a.gb;'<CR>
+endfunction
+
+autocmd FileType asm silent call SetAsmOptions()
+function SetAsmOptions()
+	" toggle (Off) syntastic checking
+    " do not replace tabs with spaces to stay consistent with current style
+    setlocal noexpandtab
+    " reset tab widths for consistency
+    setlocal tabstop=8 softtabstop=0 shiftwidth=8
+    set nolist  "don't highlight non-text characters
+    " run by pressing F5: compile gameboy game and run it
+    " prevent focus shift to new window with -d
+    nmap <F5> :silent !tmux split-window -h '~/bin/gameboy/gb_build_and_play.sh "%:r"'<CR>
 endfunction
