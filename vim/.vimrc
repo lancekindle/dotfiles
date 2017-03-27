@@ -18,14 +18,15 @@ Plugin 'Valloric/YouCompleteMe' " code completion
 " python2 install.py
 Plugin 'suan/vim-instant-markdown' " markdown viewer
 Plugin 'scrooloose/syntastic' "syntax checking plugin
-Plugin 'scrooloose/nerdcommenter' "toggle block commenting using \c-<space>
+" Plugin 'scrooloose/nerdcommenter' "toggle block commenting using \c-<space>
+Plugin 'tpope/vim-commentary'   "toggle comment using gc, paragraph with gcap
 "prevent tabular hell when clipboard pasting
 Plugin 'ConradIrwin/vim-bracketed-paste' "toggle paste mode when pasting
-" fuzzy search and edit files within current directory.
+Plugin 'ctrlpvim/ctrlp.vim' "fuzzy search filesystem for file to edit
 " Useful for editting files within a complex-hierarchy project
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-fugitive' " git commands
 Plugin 'sickill/vim-monokai' " colorscheme
+Plugin 'vim-airline/vim-airline' " stylish status line
 Plugin 'fatih/vim-go'  " go development with vim
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -179,6 +180,7 @@ nnoremap <silent> <F12> :call <SID>StripTrailingWhitespaces()<CR>
 
 "remap Y to copy from cursor to end of line (to mimick D behavior)
 nnoremap Y y$
+
 " Dvorak-Qwerty mixing. When in insert mode (or writing commands) use dvorak.
 " when in normal mode (including keyboad shortcuts) use qwerty layout.  This
 " makes it so that common keys like dd and hjkl behave as expected according
