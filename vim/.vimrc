@@ -101,12 +101,12 @@ set tabstop=4 softtabstop=4 shiftwidth=4
 " want to edit that file in the same style using tabs. Function SetTabOrSpaces
 " (below) will reset tab behavior and set noexpandtab as desired in this case
 
-"ignore case of searches if all lowercase, else case sensitive(like normal)
-set smartcase
-set ignorecase
-
 ""highlight matches when searching
 set hlsearch
+"when ignorecase and smartcase are both on, searches are case-insensitive
+"unless it contains an uppercase letter
+set smartcase
+set ignorecase
 
 ""incrementally search for matches
 set incsearch
@@ -150,6 +150,12 @@ set nowritebackup
 "C-H event from C-BS (like xterm). Terminator DOES NOT WORK with this
 inoremap <C-H> <C-w>
 
+"auto-correct :Q to :q and :W to :w
+:command WQ wq
+:command Wq wq
+:command W w
+:command Q q
+
 ""override terminal colors to 256
 set t_Co=256
 
@@ -170,6 +176,8 @@ set listchars=trail:.,extends:#,nbsp:.,tab:▷\
 "remap F12 to strip whitespaces
 nnoremap <silent> <F12> :call <SID>StripTrailingWhitespaces()<CR>
 
+"remap Y to copy from cursor to end of line (to mimick D behavior)
+nnoremap Y y$
 " Dvorak-Qwerty mixing. When in insert mode (or writing commands) use dvorak.
 " when in normal mode (including keyboad shortcuts) use qwerty layout.  This
 " makes it so that common keys like dd and hjkl behave as expected according
