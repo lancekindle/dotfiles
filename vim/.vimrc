@@ -118,8 +118,9 @@ set relativenumber
 "when in insert mode, remove all linenumbers entirely. This has the added
 "benefit that copying from vim is much easier when in insert mode
 "when in normal mode, show hybrid numbers
-autocmd InsertEnter * silent!:set nonumber norelativenumber
-autocmd InsertLeave * silent!:set number relativenumber
+"also toggle display of trailing whitespace and tabs
+autocmd InsertEnter * silent!:set nonumber norelativenumber list
+autocmd InsertLeave * silent!:set number relativenumber nolist
 
 "remap pageup and pagedown to vim's 2xctrl-u and 2xctrl-d respectively
 "for more consistent text traversal
@@ -164,7 +165,7 @@ set laststatus=2
 
 " show trailing whitespace
 set list
-set listchars=trail:.,extends:#,nbsp:.
+set listchars=trail:.,extends:#,nbsp:.,tab:▷\ 
 
 "remap F12 to strip whitespaces
 nnoremap <silent> <F12> :call <SID>StripTrailingWhitespaces()<CR>
