@@ -26,6 +26,7 @@ Plugin 'ConradIrwin/vim-bracketed-paste' "toggle paste mode when pasting
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-fugitive' " git commands
 Plugin 'sickill/vim-monokai' " colorscheme
+Plugin 'fatih/vim-go'  " go development with vim
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -280,6 +281,15 @@ function SetShellScriptOptions()
     " run shell script (.sh) as sudo by pressing F2
     nmap <F2> :silent !tmux split-window -h 'sudo "%:p"; read -p "[enter] to close"'<CR>
 endfunction
+
+autocmd FileType go silent call SetGoLangOptions()
+function SetGoLangOptions()
+    " run go script (.go) by pressing F5.
+    " FIXED a missing $GOROOT by symbolic linking: sudo ln -s /usr/local/go $GOROOT
+    nmap <F5> :GoRun<CR>
+    " nmap <F5> :silent !tmux split-window -h 'go run "%:p"; echo ""; read -p "Press [ENTER] to close"'<CR>
+endfunction
+
 autocmd FileType c silent call SetCOptions()
 function SetCOptions()
     " run go script (.go) by pressing F5.
