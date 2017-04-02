@@ -33,6 +33,10 @@ Plugin 'fatih/vim-go'  " go development with vim
 " " ================= END VUNDLE STUFF =======================================
 
 filetype plugin indent on " end general vundle config
+" Turn of swap files and backups
+set nobackup
+set noswapfile
+set nowritebackup
 
 " " ================= BEGIN PLUGIN CONFIG ===================================
 " set a global YouCompleteMe config file for syntax checking
@@ -43,7 +47,7 @@ let g:ycm_confirm_extra_conf = 0
 
 " blacklist certain filetype from being auto-completed
 let g:ycm_filetype_blacklist = {
-      \ 'asm' : 1,
+      \ 'asm' : 1, 'inc' : 1,
       \}
 let g:syntastic_mode_map = { 'passive_filetypes': ['asm', 'inc'] }
 let g:syntastic_disabled_filetypes=['asm', 'inc']
@@ -60,35 +64,23 @@ let g:syntastic_python_python_exec = 'python3'
 let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = {
             \ "mode": "active",
-            \ "passive_filetypes": ["python"] }
+            \ "passive_filetypes": ["python"] } " do not actively check python
+" hide certain files in NERDTree
+let NERDTreeIgnore = ['\.pyc$', '\.sqlite3$', '\.png$', '\.jpg$']
+" Ensure NERDTree window size is sufficiently small
+let NERDTreeWinSize=20
 
 " " ================= END PLUGIN CONFIG ===================================
 
-
-" set smart-indenting (like matching previous line indentation level)
-set autoindent
-set smartindent
-" replace tabs with spaces (aka softtabstop width) when inserting tabs
-set expandtab
-" tabs and indenting all look like 4 width/columns
-set tabstop=4 softtabstop=4 shiftwidth=4
-" NOTE: python file-type sets custom tabbing behavior (tabstop=8), which makes
-" tabs in python files stand out. However, if a file uses tabs throughout, I
-" want to edit that file in the same style using tabs. Function SetTabOrSpaces
-" (below) will reset tab behavior and set noexpandtab as desired in this case
-
-""highlight matches when searching
-set hlsearch
-"when ignorecase and smartcase are both on, searches are case-insensitive
-"unless it contains an uppercase letter
-set smartcase
-set ignorecase
-
-""incrementally search for matches
-set incsearch
-
-"relative line-numbers except at line where cursor resides, which shows
-"absolute number. (aka hybrid numbers)
+" ======================= [ Visual (Look) ] ===========================
+""enable color syntax highlighting
+syntax enable
+"use monokai colorscheme
+colorscheme monokai
+" show trailing whitespace
+set list
+set listchars=trail:.,extends:#,nbsp:.,tab:▷\ 
+"relative line-numbers to cursor position, but Cursor shows absolute line#
 set number
 set relativenumber
 "when in insert mode, remove all linenumbers entirely. This has the added
@@ -97,7 +89,51 @@ set relativenumber
 "also toggle display of trailing whitespace and tabs
 autocmd InsertEnter * silent!:set nonumber norelativenumber list
 autocmd InsertLeave * silent!:set number relativenumber nolist
+"cursor line and column position
+set ruler
+"vertical bar on column 80
+set colorcolumn=80
+hi ColorColumn ctermbg=240
+""highlight matches when searching
+set hlsearch
+""always show the status line
+set laststatus=2
+""override terminal colors to 256
+set t_Co=256
 
+" ========================= [ Behavior (Feel) ] ========================
+"when ignorecase and smartcase are both on, searches are case-insensitive
+"unless it contains an uppercase letter
+set smartcase
+set ignorecase
+""incrementally search for matches
+set incsearch
+" set smart-indenting (like matching previous line indentation level)
+set autoindent
+set smartindent
+" replace tabs with spaces (aka softtabstop width) when inserting tabs
+set expandtab
+" tabs and indenting all look like 4 width/columns
+" NOTE: python file-type sets custom tabbing behavior (tabstop=8), which makes
+" tabs in python files stand out. However, if a file uses tabs throughout, I
+" want to edit that file in the same style using tabs. Function SetTabOrSpaces
+" (below) will reset tab behavior and set noexpandtab as desired in this case
+set tabstop=4 softtabstop=4 shiftwidth=4
+"allow backspacing over more than current line
+set backspace=indent,eol,start
+
+" ================== [ Keyboard Remaps ] =============================
+"remap Y to copy from cursor to end of line (to mimick D behavior)
+nnoremap Y y$
+" Map space to leader  (which used to be   \  --aka backslash)
+map <space> <leader>
+" For compatability, map double space to double leader.
+map <space><space> <leader><leader>
+"auto-correct :Q to :q and :W to :w
+:command WQ wq
+:command Wq wq
+:command W w
+:command Q q
 "remap pageup and pagedown to vim's 2xctrl-u and 2xctrl-d respectively
 "for more consistent text traversal
 "<silent> so that they don't post commands to history
@@ -108,52 +144,17 @@ imap <silent> <PageDown> <C-O><C-D><C-O><C-D>
 imap <silent> <PageUp> <C-O><C-U><C-O><C-U>
 vmap <silent> <PageDown> <C-D><C-D>
 vmap <silent> <PageUp> <C-U><C-U>
-
-""enable colors
-syntax enable
-"use monokai colorscheme
-colorscheme monokai
-
-"allow backspacing over more than current line
-set backspace=indent,eol,start
-
-" Turn of swap files and backups
-set nobackup
-set noswapfile
-set nowritebackup
-
-"Ctrl+Backspace will delete word. (only works in terminal that generates a
-"C-H event from C-BS (like xterm). Terminator DOES NOT WORK with this
-inoremap <C-H> <C-w>
-
-"auto-correct :Q to :q and :W to :w
-:command WQ wq
-:command Wq wq
-:command W w
-:command Q q
-
-""override terminal colors to 256
-set t_Co=256
-
-"cursor line and column position
-set ruler
-
-"vertical bar on column 80
-set colorcolumn=80
-hi ColorColumn ctermbg=240
-
-""always show the status line
-set laststatus=2
-
-" show trailing whitespace
-set list
-set listchars=trail:.,extends:#,nbsp:.,tab:▷\ 
-
+" Remap window movement
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
 "remap F12 to strip whitespaces
 nnoremap <silent> <F12> :call <SID>StripTrailingWhitespaces()<CR>
+" Toggle Nerdtree file view on and off
+map <leader>f <plug>NERDTreeTabsToggle<CR>
 
-"remap Y to copy from cursor to end of line (to mimick D behavior)
-nnoremap Y y$
+
 
 " Dvorak-Qwerty mixing. When in insert mode (or writing commands) use dvorak.
 " when in normal mode (including keyboad shortcuts) use qwerty layout.  This
@@ -261,9 +262,7 @@ endfunction
 autocmd FileType go silent call SetGoLangOptions()
 function SetGoLangOptions()
     " run go script (.go) by pressing F5.
-    " FIXED a missing $GOROOT by symbolic linking: sudo ln -s /usr/local/go $GOROOT
     nmap <F5> :GoRun<CR>
-    " nmap <F5> :silent !tmux split-window -h 'go run "%:p"; echo ""; read -p "Press [ENTER] to close"'<CR>
 endfunction
 
 autocmd FileType c silent call SetCOptions()
