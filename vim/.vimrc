@@ -5,11 +5,9 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-" let Vundle manage Vundle, required
 " ================== ADD PLUGINS HERE ==================================
 " You must run :PluginInstall after adding a plugin here
+" (run :PluginInstall! to update plugins)
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'rust-lang/rust.vim'   " install rust highlighting
 Plugin 'Valloric/YouCompleteMe' " code completion
@@ -20,6 +18,10 @@ Plugin 'suan/vim-instant-markdown' " markdown viewer
 Plugin 'scrooloose/syntastic' "syntax checking plugin
 " Plugin 'scrooloose/nerdcommenter' "toggle block commenting using \c-<space>
 Plugin 'tpope/vim-commentary'   "toggle comment using gc, paragraph with gcap
+" Filetree view and open / edit in newtabs using t and T
+Plugin 'scrooloose/nerdtree'
+" Nerdtree plugin for better display
+Bundle 'jistr/vim-nerdtree-tabs'
 "prevent tabular hell when clipboard pasting
 Plugin 'ConradIrwin/vim-bracketed-paste' "toggle paste mode when pasting
 Plugin 'ctrlpvim/ctrlp.vim' "fuzzy search filesystem for file to edit
@@ -28,34 +30,6 @@ Plugin 'tpope/vim-fugitive' " git commands
 Plugin 'sickill/vim-monokai' " colorscheme
 Plugin 'vim-airline/vim-airline' " stylish status line
 Plugin 'fatih/vim-go'  " go development with vim
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" " Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" " git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" " The sparkup vim script is in a subdirectory of this repo called vim.
-" " Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" " Avoid a name conflict with L9
-" Plugin 'user/L9', {'name': 'newL9'}
-"
-"
-" "
-" " Brief help
-" " :PluginList       - lists configured plugins
-" " :PluginInstall    - installs plugins; append `!` to update or just
-" :PluginUpdate
-" " :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" auto-approve removal
-" "
-     " " see :h vundle for more details or wiki for FAQ
-" " Put your non-Plugin stuff after this line
-" " All of your Plugins must be added before the following line
 " " ================= END VUNDLE STUFF =======================================
 
 filetype plugin indent on " end general vundle config
