@@ -211,8 +211,8 @@ function SetTabOrSpaces()
         "echo "WARNING! File uses tabs instead of spaces. Defaulting to tabs"
         " asm options may want to change tabstops (this function gets called
         " AFTER asm, so we must call it again to set options)
-        if (&ft == "asm" || &ft == "inc")
-            silent call SetAsmOptions()
+        if (&ft == "asm" || &ft == "inc" || &ft == "gbz80")
+            silent call SetGameboyAsmOptions()
         endif
     endif
 endfunction
@@ -272,14 +272,16 @@ function SetCOptions()
     nmap <F6> :silent !tmux split-window -h '~/bin/gbdk/bin/lcc -o a.gb "%:p"; ~/bin/gb_emulate.sh a.gb;'<CR>
 endfunction
 
-autocmd FileType asm silent call SetAsmOptions()
-function SetAsmOptions()
+autocmd BufNewFile,BufRead *.asm,*.inc set filetype=gbz80
+autocmd FileType gbz80 silent call SetGameboyAsmOptions()
+function SetGameboyAsmOptions()
 	" toggle (Off) syntastic checking
     " do not replace tabs with spaces to stay consistent with current style
     setlocal noexpandtab
     " reset tab widths for consistency
     setlocal tabstop=8 softtabstop=0 shiftwidth=8
     set nolist  "don't highlight non-text characters
+    source ~/.vim/syntax/gbz80.vim "set up highlighting
     " run by pressing F5: compile gameboy game and run it
     " prevent focus shift to new window with -d
     nmap <F5> :silent !tmux split-window -h '~/bin/gameboy/gb_build_and_play.sh "%:r"'<CR>
