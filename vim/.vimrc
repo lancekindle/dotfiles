@@ -28,6 +28,7 @@ Plugin 'ctrlpvim/ctrlp.vim' "fuzzy search filesystem for file to edit
 " Useful for editting files within a complex-hierarchy project
 Plugin 'tpope/vim-fugitive' " git commands
 Plugin 'sickill/vim-monokai' " colorscheme
+Plugin 'tomasr/molokai' " colorscheme 2 (for assembly)
 Plugin 'vim-airline/vim-airline' " stylish status line
 Plugin 'fatih/vim-go'  " go development with vim
 " " ================= END VUNDLE STUFF =======================================
@@ -275,7 +276,12 @@ endfunction
 autocmd BufNewFile,BufRead *.asm,*.inc set filetype=gbz80
 autocmd FileType gbz80 silent call SetGameboyAsmOptions()
 function SetGameboyAsmOptions()
-	" toggle (Off) syntastic checking
+    " toggle (Off) syntastic checking
+    let g:ycm_auto_trigger=0 " turn off YouCompleteMe <tab> completion
+    colorscheme molokai
+    " molokai colorscheme fix for matching parenthesis
+    hi MatchParen      ctermfg=208 ctermbg=233 cterm=bold
+    set noshowmatch "do not auto-match parenthesis (molokai colorscheme fix)
     " do not replace tabs with spaces to stay consistent with current style
     setlocal noexpandtab
     " reset tab widths for consistency
@@ -283,6 +289,5 @@ function SetGameboyAsmOptions()
     set nolist  "don't highlight non-text characters
     source ~/.vim/syntax/gbz80.vim "set up highlighting
     " run by pressing F5: compile gameboy game and run it
-    " prevent focus shift to new window with -d
     nmap <F5> :silent !tmux split-window -h '~/bin/gameboy/gb_build_and_play.sh "%:r"'<CR>
 endfunction

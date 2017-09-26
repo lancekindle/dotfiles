@@ -6,9 +6,11 @@ endif
 "begin syntax stuff -- borrowed from github.com/AntonioND/dotfiles
 syn case ignore
 
-"set isk=a-z,A-Z,48-57,',.,_
-
 syn sync fromstart
+
+" Registers
+syn keyword gbz80Reg af bc de hl sp
+syn keyword gbz80Reg a b c d e f h l
 
 " Common gbz80 Assembly instructions
 syn keyword gbz80Inst adc add and bit ccf cp cpl daa dec di ei halt inc jp jr ld
@@ -19,12 +21,8 @@ syn keyword gbz80SpecInst push pop call ret reti rst
 " Grab the condition too
 syn match gbz80Inst "\s\+jp\s\+n\=[cz]\>" " Match Z C NZ NC
 syn match gbz80Inst "\s\+jr\s\+n\=[zc]\>"
-syn match gbz80Inst "\s\+call\s\+n\=[cz]\>"
-syn match gbz80Inst "\s\+ret\s\+n\=[cz]\>"
-
-" Registers
-syn keyword gbz80Reg af bc de hl sp
-syn keyword gbz80Reg a b c d e f h l
+syn match gbz80SpecInst "\s\+call\s\+n\=[cz]\>"
+syn match gbz80SpecInst "\s\+ret\s\+n\=[cz]\>"
 
 " Directives
 syn keyword gbz80PreProc __DATE__ __TIME__ __ISO_8601_UTC__ ___ISO_8601_LOCAL__
@@ -71,6 +69,10 @@ syn match gbz80Number "\`[0-3]\+"
 syn match gbz80Number "\<\&\o\+\>"
 syn match gbz80Number "\$\x\+"
 
+" Macro Arguments (like \@, \1, \3, \12, etc.)
+syn match gbz80MacroArg "\\\d\+"
+syn match gbz80MacroArg "\\@"
+
 " Comments
 syn region gbz80Comment start=';' end='$'
 
@@ -95,6 +97,7 @@ if version >= 508 || !exists("did_gbz80_syntax_inits")
   HiLink gbz80SpecInst Statement
   HiLink gbz80Include Include
   HiLink gbz80PreProc PreProc
+  HiLink gbz80MacroArg Identifier
   HiLink gbz80Number Number
   HiLink gbz80String String
   HiLink gbz80Other Type
