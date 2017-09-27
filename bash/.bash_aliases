@@ -31,3 +31,6 @@ alias vim="nvim"
 
 # force tmux (as best as possible) to use 256 colors
 alias tmux="tmux -2"
+
+# firefox nightly link (oh so fast)
+alias firefox-nightly="~/bin/firefox-nightly/firefox"

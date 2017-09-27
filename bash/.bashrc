@@ -130,13 +130,15 @@ export PATH="$PATH:$HOME/bin/bin"
 export PATH="$PATH:$HOME/bin/altera/13.0sp1/quartus/bin"
 
 # display current git branch in terminal
-export GITAWAREPROMPT=~/bin/git-aware-prompt
-source "${GITAWAREPROMPT}/main.sh"
-export PS1="\${debian_chroot:+(\$debian_chroot)}\u@\h:\w\[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
+if [ -f ~/bin/git-aware-prompt ]; then
+    export GITAWAREPROMPT=~/bin/git-aware-prompt
+    source "${GITAWAREPROMPT}/main.sh"
+    export PS1="\${debian_chroot:+(\$debian_chroot)}\u@\h:\w\[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
+fi
 
-export QSYS_ROOTDIR="/home/lancey/bin/altera_lite/15.1/quartus/sopc_builder/bin"
+export QSYS_ROOTDIR="/home/lance/bin/altera_lite/15.1/quartus/sopc_builder/bin"
 
-export ALTERAOCLSDKROOT="/home/lancey/bin/altera_lite/15.1/hld"
+export ALTERAOCLSDKROOT="/home/lance/bin/altera_lite/15.1/hld"
 
 # =============== [ Custom Functions ] ==========================
 # print out all colors on terminal for easy reference
