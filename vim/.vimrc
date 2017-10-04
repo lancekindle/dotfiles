@@ -32,6 +32,7 @@ Plugin 'tomasr/molokai' " colorscheme 2 (for assembly)
 Plugin 'vim-airline/vim-airline' " stylish status line
 Plugin 'fatih/vim-go'  " go development with vim
 Plugin 'airblade/vim-gitgutter'  " git +,- marks during file editting
+Plugin 'natw/keyboard_cat.vim'  " load file to 'type' using :PlayMeOff <file>
 " " ================= END VUNDLE STUFF =======================================
 
 filetype plugin indent on " end general vundle config
