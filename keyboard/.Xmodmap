@@ -16,3 +16,11 @@ add Lock = Caps_Lock
 ! This is why fn can be remapped to cntrl, yet when I press fn+F1, it generates
 ! the keycode that is mapped to "Mute"
 keycode 151 = Control_L
+
+! maps PrtSc to Menu (context menu). You also have to disable associated
+! keyboard shortcuts in gnome to not launch screenshot utility
+! keycode 107 = Menu
+! the above keycode = 107 is the actual keycode. But the below keysym
+! redirection works as well
+keysym Menu = Menu
+keysym Print = Menu
