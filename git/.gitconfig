@@ -8,3 +8,14 @@
 [merge]
     tool = vimdiff
     conflictstyle = diff3
+	ff = false
+	# recommended by a blog. If merges into master are fast-forward merged
+	# (ff), then you are not given the chance to make a merge commit
+	# message summarizing what's been added/updated. ff=false ensures that
+	# you get a full merge when merging features into master
+[pull]
+	ff = only
+[alias]
+	# -w (ignore whitespace) and -M to follow more accurately line changes
+	# to ensure that blame correctly identifies the committer
+	praise = blame -w -M
