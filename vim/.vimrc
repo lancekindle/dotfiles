@@ -31,6 +31,7 @@ Plugin 'sickill/vim-monokai' " colorscheme
 Plugin 'tomasr/molokai' " colorscheme 2 (for assembly)
 Plugin 'vim-airline/vim-airline' " stylish status line
 Plugin 'fatih/vim-go'  " go development with vim
+Plugin 'airblade/vim-gitgutter'  " git +,- marks during file editting
 " " ================= END VUNDLE STUFF =======================================
 
 filetype plugin indent on " end general vundle config
@@ -89,7 +90,9 @@ set relativenumber
 "when in normal mode, show hybrid numbers
 "also toggle display of trailing whitespace and tabs
 autocmd InsertEnter * silent!:set nonumber norelativenumber list
+autocmd InsertEnter * silent!:GitGutterSignsDisable
 autocmd InsertLeave * silent!:set number relativenumber nolist
+autocmd InsertLeave * silent!:GitGutterSignsEnable
 "cursor line and column position
 set ruler
 "vertical bar on column 80
