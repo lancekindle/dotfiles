@@ -296,3 +296,14 @@ function SetGameboyAsmOptions()
     " run by pressing F5: compile gameboy game and run it
     nmap <F5> :silent !tmux split-window -h '~/bin/gameboy/gb_build_and_play.sh "%:r"'<CR>
 endfunction
+
+autocmd FileType ruby silent call SetRubyOptions()
+function SetRubyOptions()
+    " set desired text width to 72 (for wrapping comments)
+    set textwidth=72
+    "do NOT automatically wrap text. Must highlight and press GQ
+    set formatoptions-=t
+    nmap <F5> :silent !tmux split-window -h 'irb --simple-prompt -r "%:p"'<CR>
+    " https://stackoverflow.com/a/27870513
+    " https://stackoverflow.com/a/3292515
+endfunction
