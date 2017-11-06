@@ -24,7 +24,8 @@ Plugin 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 "prevent tabular hell when clipboard pasting
 Plugin 'ConradIrwin/vim-bracketed-paste' "toggle paste mode when pasting
-Plugin 'ctrlpvim/ctrlp.vim' "fuzzy search filesystem for file to edit
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim' "fuzzy search filesystem for file to edit
 " Useful for editting files within a complex-hierarchy project
 Plugin 'tpope/vim-fugitive' " git commands
 Plugin 'sickill/vim-monokai' " colorscheme

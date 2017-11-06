@@ -146,3 +146,5 @@ function all_colors {
     for C in {0..255}; do  tput setab $C;  echo -n "$C "; done
     echo
 }
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
