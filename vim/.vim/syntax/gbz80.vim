@@ -42,6 +42,7 @@ syn keyword gbz80PreProc POPS PUSHS
 syn keyword gbz80PreProc _RS RB RB RSRESET RSSET RW
 syn keyword gbz80PreProc STRCAT STRCMP STRIN STRLEN STRLWR STRSUB STRUPR
 syn keyword gbz80PreProc CHARMAP
+syn keyword gbz80PreProc HIGH LOW
 
 syn keyword gbz80OrgDirs BANK SECTION ALIGN
 syn keyword gbz80OrgDirs HOME CODE DATA BSS
