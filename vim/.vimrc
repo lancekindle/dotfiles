@@ -159,7 +159,7 @@ nmap <C-l> <C-w>l
 "remap F12 to strip whitespaces
 nnoremap <silent> <F12> :call <SID>StripTrailingWhitespaces()<CR>
 " Toggle Nerdtree file view on and off
-map <leader>f <plug>NERDTreeTabsToggle<CR>
+map <leader>f <plug>NERDTreeTabsToggle<CR><C-H>
 
 
 
