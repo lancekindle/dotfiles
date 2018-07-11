@@ -71,7 +71,7 @@ ACTION=="add", \
 SUBSYSTEM=="usb", \
 ATTRS{idVendor}=="0510", \
 ATTRS{idProduct}=="0032", \
-# switch out of root access into <user>, such as lancey
-RUN+="/usr/bin/sudo -u lancey /home/lancey/bin/dvorak-qwerty/enable_dvorak_on_usb_keyboard.sh", \
+# switch out of root access into <user>, such as lance
+RUN+="/usr/bin/sudo -u lance /home/lance/bin/dvorak-qwerty/enable_dvorak_on_usb_keyboard.sh", \
 # to be extra sure, enable ALL users to access device
 MODE="0666"

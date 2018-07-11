@@ -8,6 +8,7 @@ keysym Escape = Escape
 keysym Caps_Lock = Escape
 add Lock = Caps_Lock
 
+
 ! On lenovo laptop, remap fn key to CNTL key
 ! unfortunately, the BIOS automatically remaps any key pressed in combination
 ! with the fn key to a different keycode. For example, fn+s => screenshot
