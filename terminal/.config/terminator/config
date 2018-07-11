@@ -1,30 +1,30 @@
 [global_config]
-  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
-  title_transmit_bg_color = "#909090"
   borderless = True
-  title_transmit_fg_color = "#000000"
+  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
   title_inactive_bg_color = "#484848"
+  title_transmit_bg_color = "#909090"
+  title_transmit_fg_color = "#000000"
 [keybindings]
-[profiles]
-  [[default]]
-    scrollbar_position = hidden
-    palette = "#000000:#aa0000:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
-    use_system_font = False
-    background_darkness = 0.95
-    background_type = transparent
-    active_encodings = WINDOWS-1254, UTF-8, ISO-8859-1
-    background_image = None
-    update_records = False
-    show_titlebar = False
-    font = Monospace 9
 [layouts]
   [[default]]
     [[[child1]]]
-      type = Terminal
+      command = ~/bin/alias/.git-cd2lastdir
       parent = window0
       profile = default
-      command = ~/bin/alias/.git-cd2lastdir
+      type = Terminal
     [[[window0]]]
-      type = Window
       parent = ""
+      type = Window
 [plugins]
+[profiles]
+  [[default]]
+    active_encodings = WINDOWS-1254, UTF-8, ISO-8859-1
+    background_darkness = 0.95
+    background_image = None
+    background_type = transparent
+    font = Monospace 9
+    palette = "#000000:#aa0000:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
+    scrollbar_position = hidden
+    show_titlebar = False
+    update_records = False
+    use_system_font = False
