@@ -10,6 +10,7 @@ call vundle#rc()
 " (run :PluginInstall! to update plugins)
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'rust-lang/rust.vim'   " install rust highlighting
+Plugin 'bumaociyuan/vim-swift'  " install swift syntax highlighting
 Plugin 'Valloric/YouCompleteMe' " code completion
 " to recompile or install for first time:
 " cd ~/.vim/bundle/YouCompleteMe
@@ -306,4 +307,11 @@ function SetRubyOptions()
     nmap <F5> :silent !tmux split-window -h 'irb --simple-prompt -r "%:p"'<CR>
     " https://stackoverflow.com/a/27870513
     " https://stackoverflow.com/a/3292515
+endfunction
+
+autocmd FileType swift silent call SetSwiftOptions()
+function SetSwiftOptions()
+    " -Onone specifies no optimization,
+    "  -save-temps to save intermediate compilation results
+    nmap <F5> :silent !tmux split-window -h 'swift -Onone "%:p"; read -p "[enter] to close."'<CR>
 endfunction
