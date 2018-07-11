@@ -19,6 +19,8 @@ alias gits="git status"
 alias ll='ls -alFh'
 alias la='ls -Ah'
 alias l='ls -CFh'
+
+# tig is better when you can see all branches
 alias tig="tig --all"
 
 # for opening vim docs
@@ -34,3 +36,9 @@ alias tmux="tmux -2"
 
 # firefox nightly link (oh so fast)
 alias firefox-nightly="~/bin/firefox-nightly/firefox"
+
+# simplified interactive ruby with tab-completion
+alias irb="irb --prompt simple --readline -r irb/completion"
+
+# some swift shims so that various imports work
+#alias swift="~/bin/swift/swift-shim.sh"
