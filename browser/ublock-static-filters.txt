@@ -1,0 +1,16 @@
+!stackoverflow.com###hot-network-questions
+!graphicdesign.stackexchange.com###hot-network-questions
+!apple.stackexchange.com###hot-network-questions
+!android.stackexchange.com###hot-network-questions
+! === THIS should prevent ALL hot network questions ===
+###hot-network-questions
+##.community-bulletin.module
+
+! 9/11/2018, 3:34:53 PM https://stackoverflow.com/questions/25933825/how-to-interrogate-uiusernotificationsettings-types
+stackoverflow.com###hot-network-questions
+
+! block youtube in-video related videos on embedded player (paused bar)
+youtube.com##.ytp-pause-overlay
+! block user-generated links / shapes on youtube videos
+!www.youtube.com##div.annotation-type-highlight.annotation-shape
+!www.youtube.com##div.annotation-type-highlight.annotation
